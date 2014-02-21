@@ -17,6 +17,8 @@ public class tree {
 		b2.insert(33);
 		Checksubtree c=new Checksubtree();
 		System.out.println(c.checktree(b2, b1));
+		System.out.println("Search");
+		b2.search();
 	}
 }
 
@@ -67,26 +69,7 @@ class BinaryTree{
 	public void BinaryTree(){
 		root=null;
 	}
-	
-	public boolean lookup(int data){
-		return lookup(root, data);
-	}
-	
-	public boolean lookup(Node node, int data){
-		if(node==null){
-			return false;
-		}
-		if(data==node.data){
-			return true;
-		}
-		else if(data<node.data){
-			return lookup(node.left, data);
-		}
-		else{
-			return lookup(node.right, data);
-		}
-	}
-	
+	//Insert
 	public void insert(int data){
 		Node temp=root;
 		Node newnode=new Node(data);
@@ -114,7 +97,33 @@ class BinaryTree{
 		}
 		return temp;
 	}
-	
+	//Search a node
+	/* The procedure begins and searches for the node downwards in the tree
+	 * For each node encountered it compares it with the val
+	 * if val==node.data, then the loop terminates and value is returned
+	 * if the value is less than the root value, it goes to the left sub tree else to the 
+	 * right sub tree. 
+	 * Hence the recursion forms the path downwards from the root of the tree. 
+	 * Thus run time of the tree is O(h). Where h is the height of the tree.
+	 */
+	public void search(){
+		search(root, 11);
+	}
+	public void search(Node tree, int val){
+		if(tree==null){
+			System.out.println("Empty tree");
+		}
+		else if(tree.data==val){
+			System.out.println("Value found");
+		}
+		else if(val<tree.data){
+			search(tree.left, val);
+		}
+		else{
+			search(tree.right, val);
+		}
+	}
+	//Pre Order
 	public String preorder(){
 		return preorder(root);
 	}
@@ -133,6 +142,7 @@ class BinaryTree{
 			return pre;
 	}
 	String s2=" ";
+	//Inorder
 	public String inorder(){
 		return inorder(root);
 	}
@@ -148,6 +158,8 @@ class BinaryTree{
 		inorder(node.right);
 		return in;
 	}
+	
+	/*See if a tree is balanced*/
 	public void isBalanced(){
 		isBalanced(root);
 	}
