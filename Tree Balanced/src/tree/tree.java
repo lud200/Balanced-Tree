@@ -19,6 +19,8 @@ public class tree {
 		System.out.println(c.checktree(b2, b1));
 		System.out.println("Search");
 		b2.search();
+		b2.minimum();
+		b2.maximum();
 	}
 }
 
@@ -123,6 +125,35 @@ class BinaryTree{
 			search(tree.right, val);
 		}
 	}
+	/*Minimum and Maximum from a tree
+	 * The minimum from a tree would be the left child from root until we 
+	 * encounter NULL. 
+	 * The maximum from a tree would be the right child from root until we
+	 * encounter NULL.
+	 * The time complexity for both the searches would be O(h) where h is
+	 * the height of the tree.
+	 */
+	public void minimum(){
+		minimum(root);
+	}
+	public void minimum(Node node){
+		while(node.left!=null){
+			node=node.left;
+		}
+		System.out.print("Minimum value of the tree is:");
+		System.out.println(node.data);
+	}
+	public void maximum(){
+		maximum(root);
+	}
+	public void maximum(Node node){
+		while(node.right!=null){
+			node=node.right;
+		}
+		System.out.print("Maximum value of the tree is:");
+		System.out.println(node.data);
+	}
+	
 	//Pre Order
 	public String preorder(){
 		return preorder(root);
